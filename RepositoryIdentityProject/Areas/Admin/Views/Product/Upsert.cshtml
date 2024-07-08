@@ -1,0 +1,99 @@
+﻿@model ProductVM
+
+<div class="mt-5 mb-5">
+    <h4 class="text-dark p-3 text-center bg-success">@(Model.Product.Id != 0 ? "Update" : "Create") Product</h4>
+</div>
+<form method="post" class="row" enctype="multipart/form-data">
+    <input asp-for="Product.Id" type="hidden" />
+    <input asp-for="Product.ImageUrl" type="hidden" />
+    <div class="row">
+        <div class="col-10">
+            <div class="border border-primary border-opacity-50 p-3 mt-4">
+
+                @* <div asp-validation-summary="All"></div> it is show all type massage and also property type *@
+                @* <div asp-validation-summary="ModelOnly"></div> only model massage show *@
+                <div class="mb-3 row p-1">
+                    <label asp-for="Product.Title" class="p-0"></label>
+                    <input asp-for="Product.Title" class="form-control" placeholder="Enter Product Name" />
+                    <span asp-validation-for="Product.Title" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="Product.Discription" class="p-0"></label>
+                    <textarea asp-for="Product.Discription" class="form-control" placeholder="Enter Discription"></textarea>
+                    <span asp-validation-for="Product.Discription" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="Product.ISBN" class="p-0"></label>
+                    <input asp-for="Product.ISBN" type="text" class="form-control" placeholder="Enter ISBN" />
+                    <span asp-validation-for="Product.ISBN" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="Product.Author" class="p-0"></label>
+                    <input asp-for="Product.Author" class="form-control" placeholder="Enter Author" />
+                    <span asp-validation-for="Product.Author" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="Product.ListPrice" class="p-0"></label>
+                    <input asp-for="Product.ListPrice" class="form-control" placeholder="Enter ListPrice" />
+                    <span asp-validation-for="Product.ListPrice" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="Product.Price" class="p-0"></label>
+                    <input asp-for="Product.Price" class="form-control" placeholder="Enter Price" />
+                    <span asp-validation-for="Product.Price" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="Product.Price50" class="p-0"></label>
+                    <input asp-for="Product.Price50" class="form-control" placeholder="Enter Price50" />
+                    <span asp-validation-for="Product.Price50" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="Product.Price100" class="p-0"></label>
+                    <input asp-for="Product.Price100" class="form-control" placeholder="Enter Price100" />
+                    <span asp-validation-for="Product.Price100" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="Product.CategoryId" class="p-0"></label>
+                    @* <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.CategoryList"> *@
+                    @* <select asp-for="Product.CategoryId" class="form-select" asp-items="@(ViewData["CategoryList"] as IEnumerable<SelectListItem>)"> *@
+                    @* <select asp-for="Product.CategoryId" class="form-select" asp-items="@Model.CategoryList"> We can also use below code*@
+                    <select asp-for="@Model.Product.CategoryId" class="form-select" asp-items="@Model.CategoryList">
+                        <option disabled selected>--Select--</option>
+                    </select>
+                    <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="Product.ImageUrl" class="p-0"></label>
+                    <input type="file" name="file" class="form-control" />
+                    <span asp-validation-for="Product.ImageUrl" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        @if (Model.Product.Id != 0)
+                        {
+                            <button type="submit" class="btn btn-info form-control"><i class="bi bi-plus-circle" style="font-size:12px;"></i> Update</button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn btn-info form-control"><i class="bi bi-plus-circle" style="font-size:12px;"></i> Create</button>
+                        }
+
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-secondary border form-control"><i class="bi bi-arrow-left"></i> Back To List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-2 mt-4">
+            <img src="@Model.Product.ImageUrl" width="100%" style="border-radius:5px;border:1px solid #bbb9b9"/>
+        </div>
+    </div>
+
+</form>
+
+@section scripts {
+    @{
+        <partial name="_ValidationScriptsPartial.cshtml"></partial>
+    }
+}          

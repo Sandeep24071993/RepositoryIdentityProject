@@ -1,0 +1,68 @@
+﻿@model Product
+
+<div class="mt-5 mb-5">
+    <h4 class="text-dark p-3 text-center bg-success">Delete Product</h4>
+</div>
+<form method="post">
+    <div class="border border-primary border-opacity-50 p-3 mt-4">
+        
+        @* <input asp-for="Id" type="hidden" /> *@
+        @* <div asp-validation-summary="All"></div> it is show all type massage and also property type *@
+        @* <div asp-validation-summary="ModelOnly"></div> only model massage show *@
+        <div class="mb-3 row p-1">
+            <label asp-for="Title" class="p-0"></label>
+            <input asp-for="Title" disabled class="form-control" placeholder="Enter Product Name" />
+            @* <span asp-validation-for="Title" class="text-danger"></span> *@
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Discription" class="p-0"></label>
+            <textarea asp-for="Discription" disabled class="form-control" placeholder="Enter Discription" ></textarea>
+            @* <span asp-validation-for="Discription" class="text-danger"></span> *@
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="ISBN" class="p-0"></label>
+            <input asp-for="ISBN" disabled type="text" class="form-control" placeholder="Enter ISBN" />
+            @* <span asp-validation-for="ISBN" class="text-danger"></span> *@
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Author" class="p-0"></label>
+            <input asp-for="Author" disabled class="form-control" placeholder="Enter Author" />
+            @* <span asp-validation-for="Author" class="text-danger"></span> *@
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="ListPrice" class="p-0"></label>
+            <input asp-for="ListPrice" disabled class="form-control" placeholder="Enter ListPrice" />
+            @* <span asp-validation-for="ListPrice" class="text-danger"></span> *@
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Price" class="p-0"></label>
+            <input asp-for="Price" disabled class="form-control" placeholder="Enter Price" />
+            @* <span asp-validation-for="Price" class="text-danger"></span> *@
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Price50" class="p-0"></label>
+            <input asp-for="Price50" disabled class="form-control" placeholder="Enter Price50" />
+            @* <span asp-validation-for="Price50" class="text-danger"></span> *@
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Price100" class="p-0"></label>
+            <input asp-for="Price100" disabled class="form-control" placeholder="Enter Price100" />
+            @* <span asp-validation-for="Price100" class="text-danger"></span> *@
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-danger form-control">Delete</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Product" asp-action="Index" class="btn btn-secondary border form-control"><i class="bi bi-arrow-left"></i> Back To List</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section scripts {
+    @{
+        <partial name="_ValidationScriptsPartial.cshtml"></partial>
+    }
+}
+

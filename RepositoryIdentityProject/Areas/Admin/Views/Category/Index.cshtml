@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Category>
+
+@* @{
+    if (TempData["success"] != null)
+    {
+        <h3 style="color:green">@TempData["success"]</h3>
+    }
+} *@
+
+@* <partial name="_NotificationPartial"></partial> for multiple page show notification so use master page (_Layout.cshtml) just above rander body for render*@ 
+
+@* <div class="container m-2">
+    <div class="row bg-secondary">
+            
+    </div>
+</div> *@
+<div class="container">
+    <div class="mt-5 mb-5">
+        <h4 class="text-dark p-3 text-center bg-success">Category List</h4>
+    </div>
+    <div class="row pb-4">
+        <div class="col-12 text-end">
+            <a class="btn btn-info" asp-controller="Category" asp-action="Create"><i class="bi bi-plus-circle"></i> Create New Category</a>
+        </div>
+    </div>
+    <table class="table table-bordered text-center table-striped">
+        <tr>
+            <th>Category Name</th>
+            <th>Display Order</th>
+            <th>Action</th>
+        </tr>
+
+
+        @foreach (var item in Model.OrderBy(u => u.DisplayOrder))
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.DisplayOrder</td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Category" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary mx-2">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        <a asp-controller="Category" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger mx-2">
+                            <i class="bi bi-trash"></i> Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
